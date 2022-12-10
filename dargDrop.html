@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cherry+Swash&display=swap">
+    <title>Document</title>
+    <style>
+        body {
+            text-align: center;
+            background-color: rgb(14, 66, 88);
+        }
+
+        div {
+            margin: 50px;
+            color: rgb(245, 242, 242);
+            font-family: "Cherry Swash", sans-serif;
+            font-size: 80px;
+
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        Paper vs Rock vs Scissors
+    </div>
+    <img class="paper" src="paper.png" height="400px" draggable="true" ondrop="drop(event)" ondragstart="drag(event)"
+        ondragover="allowDrop(event)">
+    <img class="rock" src="rock.png" height="400px" draggable="true" ondrop="drop(event)" ondragstart="drag(event)"
+        ondragover="allowDrop(event)">
+    <img class="scissors" src="scissors.png" height="400px" draggable="true" ondrop="drop(event)"
+        ondragstart="drag(event)" ondragover="allowDrop(event)">
+
+</body>
+<script>
+    var imgs = document.getElementsByTagName("img");
+    function allowDrop(ev) {
+        ev.preventDefault();
+    }
+    function drag(ev) {
+        ev.dataTransfer.setData("text", ev.target.className);
+    }
+
+    function drop(ev) {
+        ev.preventDefault();
+        var drag = ev.dataTransfer.getData("text");
+        var targ = ev.target.className;
+        var source = document.getElementsByClassName(drag)[0];
+        var des = document.getElementsByClassName(targ)[0];
+
+        if (drag == "paper" && targ == "rock") {
+            des.src = drag + ".png";
+            des.className = drag;
+            source.src = targ + ".png";
+            source.className = targ;
+        }
+        else if (drag == "rock" && targ == "scissors") {
+            des.src = drag + ".png";
+            des.className = drag;
+            source.src = targ + ".png";
+            source.className = targ;
+
+        }
+        if (drag == "scissors" && targ == "paper") {
+            des.src = drag + ".png";
+            des.className = drag;
+            source.src = targ + ".png";
+            source.className = targ;
+        }
+    }
+</script>
+
+</html>
